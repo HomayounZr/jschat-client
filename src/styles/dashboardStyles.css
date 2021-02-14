@@ -1,0 +1,93 @@
+/* general ui */
+.navbarHeader {
+    width: 100%;
+    height: 10%;
+    background-color: #0272e0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.myNavbar{
+    background-color: #0272e0;
+    width: 90%;
+    margin: 0px 5% 0px 5%;
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* min-height: 5%; */
+}
+
+.nav-items {
+    display: flex;
+}
+
+li .nav-link {
+    list-style: circle;
+    color: #fff;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mainDiv {
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    border-radius: 0px;
+}
+
+/* for small screens */
+@media screen and (min-width: 960px){
+    .mainDiv {
+        width: 100%;
+        height: 90%;
+        /* margin: 0% 5% 0% 5%; */
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        padding: 0px;
+    }
+
+    .contactsPage {
+        flex: 0.3;
+        padding: 10px;
+        /* margin: 5px 0px 5px 5px; */
+        /* border-left: solid #2196f3 2.5px; */
+        /* background-color: blue; */
+    }
+
+    .chatPage {
+        display: flex;
+        flex-direction: column;
+        flex: 0.7;
+        /* background-color: red; */
+    }
+
+    .detailsBar {
+        flex: 1;
+        /* background-color: yellow; */
+    }
+
+    .chatsDialog {
+        flex: 8;
+    }
+
+    .inputDialog {
+        flex: 1;
+        /* background-color: green; */
+    }
+
+    .myNavbar{
+        display: none;
+        background-color: #0272e0;
+        width: 90%;
+        margin: 0px 5% 0px 5%;
+        display: flex;
+        height: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        /* min-height: 5%; */
+    }
+}

@@ -6,7 +6,18 @@ import {
 import MyNavbar from './myNavbar';
 import MessageInputBar from './messageInputBar';
 
+import SocketHelper from '../helpers/socketHelper';
+
 const DashboardPage = (props) => {
+
+    React.useEffect(() => {
+
+        SocketHelper.connectSocket();
+        SocketHelper.getSocket().emit('joinSocket', localStorage.getItem('_userId'));
+        SocketHelper.getSocket().on('welcome', socketId => console.log('connected'));
+
+    }, []);
+
     return (
         <div
             style={{
@@ -15,7 +26,7 @@ const DashboardPage = (props) => {
                 // justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh',
-                backgroundColor: '#007bff',
+                backgroundColor: '#1f1b24',
             }}
         >
             <MyNavbar currentPage="dashboard" />

@@ -67,7 +67,7 @@ const SignupPanel = ({}) => {
 
                 localStorage.setItem('_userId', userId);
                 localStorage.setItem('_token', token);
-                RestHelper.setAuthHeader(token);
+                RestHelper.setAuthHeader(token, userId);
                 window.location = '/dashboard';
             } else {
                 setErr(result);
@@ -137,7 +137,7 @@ const LoginPanel = ({}) => {
 
                 localStorage.setItem('_userId', userId);
                 localStorage.setItem('_token', token);
-                RestHelper.setAuthHeader(token);
+                RestHelper.setAuthHeader(token, userId);
                 window.location = '/dashboard';
             } else {
                 setErr(result);

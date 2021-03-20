@@ -61,6 +61,7 @@ li .nav-link {
         display: flex;
         flex-direction: column;
         flex: 0.7;
+        background-color: #fff;
         /* background-color: red; */
     }
 
@@ -75,6 +76,8 @@ li .nav-link {
 
     .inputDialog {
         flex: 1;
+        background-color: #2196f3;
+        border-radius: 5px;
         /* background-color: green; */
     }
 

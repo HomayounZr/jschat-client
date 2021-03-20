@@ -3,12 +3,19 @@ import '../styles/dashboardStyles.css';
 import {
     Card
 } from 'react-bootstrap';
+
 import MyNavbar from './myNavbar';
 import MessageInputBar from './messageInputBar';
+import ChatMessagesDialog from './chatMessagesDialog';
+import ChatTitleBar from './chatTitleBar';
 
 import SocketHelper from '../helpers/socketHelper';
 
+// const ChatContext = React.createContext(null);
+
 const DashboardPage = (props) => {
+
+    const [selectedUser, setSelectedUser] = React.useState(null);
 
     React.useEffect(() => {
 
@@ -17,6 +24,10 @@ const DashboardPage = (props) => {
         SocketHelper.getSocket().on('welcome', socketId => console.log('connected'));
 
     }, []);
+
+    const selectChat = (user) => {
+        setSelectedUser(user);
+    }
 
     return (
         <div
@@ -29,7 +40,7 @@ const DashboardPage = (props) => {
                 backgroundColor: '#1f1b24',
             }}
         >
-            <MyNavbar currentPage="dashboard" />
+            <MyNavbar currentPage="dashboard" selectChat={selectChat} />
 
             <Card className="mainDiv shadow-sm container">
                 <div className="contactsPage">
@@ -39,10 +50,18 @@ const DashboardPage = (props) => {
 
                 </div>
 
-                <div className="chatPage">
-                    <div className="detailsBar"></div>
-                    <div className="chatsDialog"></div>
-                    <div className="inputDialog">
+                <div className="chatPage shadow">
+                    <div className="detailsBar">
+
+                        <ChatTitleBar selectedUser={selectedUser} />
+
+                    </div>
+                    <div className="chatsDialog">
+
+                        <ChatMessagesDialog />
+
+                    </div>
+                    <div className="inputDialog shadow">
 
                         <MessageInputBar />
 

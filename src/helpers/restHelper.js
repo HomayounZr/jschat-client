@@ -29,7 +29,7 @@ class RestHelper {
         };
     }
 
-    static setAuthHeader = (token) => {
+    static setAuthHeader = (token, userId) => {
         this.authHeaders = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -43,7 +43,7 @@ class RestHelper {
         };
 
         axios.defaults.headers = this.authHeaders;
-        axios.defaults.baseURL = ROOT;
+        axios.defaults.baseURL = ROOT + '/api/' + userId;
     }
 
     static users_login = (email, password) => {
@@ -76,6 +76,24 @@ class RestHelper {
             }).catch(err => {
                 reject(err);
             });
+        });
+    }
+
+    static users_searchUsername = (username, pageNumber) => {
+        return new Promise((resolve, reject) => {
+            axios.get('http://localhost:3001/api/' + localStorage.getItem('_userId') + '/users/search/' + username + '/' + pageNumber, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + localStorage.getItem('_token')
+                }
+            })
+            .then(res => res.data)
+            .then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            })
         });
     }
 

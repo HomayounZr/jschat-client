@@ -1,15 +1,12 @@
 import socketIOClient from 'socket.io-client';
 
-class SocketHelper {
-    static socket = null;
+let socket = socketIOClient('http://localhost:3001');
 
-    static connectSocket = () => {
-        this.socket = socketIOClient("http://localhost:3001");
-    }
-
-    static getSocket = () => {
-        return this.socket;
-    }
+const connectSocket = () => {
+    socket = socketIOClient('http://localhost:3001');
 }
 
-export default SocketHelper;
+export {
+    socket,
+    connectSocket
+};

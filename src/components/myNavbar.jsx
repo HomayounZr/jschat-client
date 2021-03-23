@@ -45,7 +45,6 @@ const SearchResultDialog = ({ selectChat }) => {
             setTyping(true);
             try{
                 const result = await RestHelper.users_searchUsername(text, 1);
-                console.log(result);
                 setUsers(result);
             } catch(ex) {
                 console.log(ex);

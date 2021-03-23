@@ -12,6 +12,7 @@ import {
     Link
 } from 'react-router-dom';
 import RestHelper from '../helpers/restHelper';
+import { connectSocket } from '../helpers/socketHelper';
 
 const WelcomePanelContext = React.createContext(null);
 const WelcomePage = (props) => {
@@ -68,6 +69,7 @@ const SignupPanel = ({}) => {
                 localStorage.setItem('_userId', userId);
                 localStorage.setItem('_token', token);
                 RestHelper.setAuthHeader(token, userId);
+                // connectSocket();
                 window.location = '/dashboard';
             } else {
                 setErr(result);
@@ -138,6 +140,7 @@ const LoginPanel = ({}) => {
                 localStorage.setItem('_userId', userId);
                 localStorage.setItem('_token', token);
                 RestHelper.setAuthHeader(token, userId);
+                // connectSocket();
                 window.location = '/dashboard';
             } else {
                 setErr(result);

@@ -9,9 +9,7 @@ import MessageInputBar from './messageInputBar';
 import ChatMessagesDialog from './chatMessagesDialog';
 import ChatTitleBar from './chatTitleBar';
 
-import SocketHelper from '../helpers/socketHelper';
-
-// const ChatContext = React.createContext(null);
+import { socket } from '../helpers/socketHelper';
 
 const DashboardPage = (props) => {
 
@@ -19,9 +17,8 @@ const DashboardPage = (props) => {
 
     React.useEffect(() => {
 
-        SocketHelper.connectSocket();
-        SocketHelper.getSocket().emit('joinSocket', localStorage.getItem('_userId'));
-        SocketHelper.getSocket().on('welcome', socketId => console.log('connected'));
+        socket.emit('joinSocket', localStorage.getItem('_userId'));
+        socket.on('welcome', socketId => console.log('connected'));
 
     }, []);
 
@@ -63,7 +60,7 @@ const DashboardPage = (props) => {
                     </div>
                     <div className="inputDialog shadow">
 
-                        <MessageInputBar />
+                        <MessageInputBar selectedUser={selectedUser} />
 
                     </div>
                 </div>

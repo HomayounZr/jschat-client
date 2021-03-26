@@ -1,0 +1,26 @@
+.myMessage {
+    background-color: #a3a3a3;
+    max-width: 60%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+
+.othersMessage {
+    background-color: #2196f3;
+    max-width: 60%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    align-self: flex-start;
+}
+
+.messageBody {
+    color: #fff;
+}
+
+.smallDetails {
+    font-size: 12px;
+    color: #f8f8f8;
+}

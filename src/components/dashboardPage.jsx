@@ -14,6 +14,7 @@ import { socket } from '../helpers/socketHelper';
 const DashboardPage = (props) => {
 
     const [selectedUser, setSelectedUser] = React.useState(null);
+    const [messages, setMessages] = React.useState([]);
 
     React.useEffect(() => {
 
@@ -24,6 +25,29 @@ const DashboardPage = (props) => {
 
     const selectChat = (user) => {
         setSelectedUser(user);
+        socket.on('newTextPM',data => {
+            const rawData = JSON.parse(data);
+            console.log(rawData.userId + ' ' + user._id);
+            if(rawData.isMe){
+                addNewMessage(rawData);
+            } else {
+                if(user != null && String(rawData.userId).localeCompare(String(user._id)) == 0){
+                    addNewMessage(rawData);
+                }
+            }
+        });
+    }
+
+    const addNewMessage = (messageObject) => {
+        setMessages(oldData => [...oldData, messageObject]);
+    }
+
+    const clearMessages = () => {
+        setMessages([]);
+    }
+
+    const loadMessages = (messages) => {
+        setMessages(messages);
     }
 
     return (
@@ -55,12 +79,12 @@ const DashboardPage = (props) => {
                     </div>
                     <div className="chatsDialog">
 
-                        <ChatMessagesDialog />
+                        <ChatMessagesDialog messages={messages} />
 
                     </div>
                     <div className="inputDialog shadow">
 
-                        <MessageInputBar selectedUser={selectedUser} />
+                        <MessageInputBar selectedUser={selectedUser} addNewMessage={addNewMessage} />
 
                     </div>
                 </div>

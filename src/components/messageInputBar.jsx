@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { socket } from '../helpers/socketHelper';
 
-const MessageInputBar = ({ selectedUser }) => {
+const MessageInputBar = ({ selectedUser, addNewMessage }) => {
 
     const [text, setText] = React.useState('');
 
@@ -15,13 +15,19 @@ const MessageInputBar = ({ selectedUser }) => {
         const input = e.target.value;
         setText(input);
     }
-    
-    React.useEffect(() => {
-        socket.on('newTextPM',data => {
-            const rawData = JSON.parse(data);
-            
-        })
-    }, []);
+
+    // React.useEffect(() => {
+    //     socket.on('newTextPM',data => {
+    //         const rawData = JSON.parse(data);
+    //         if(rawData.isMe){
+    //             addNewMessage(rawData);
+    //         } else {
+    //             if(selectedUser != null && String(rawData.userId).localeCompare(String(selectedUser._id)) == 0){
+    //                 addNewMessage(rawData);
+    //             }
+    //         }
+    //     })
+    // }, []);
 
     const sendMessage = () => {
         socket.emit(
@@ -30,6 +36,7 @@ const MessageInputBar = ({ selectedUser }) => {
             selectedUser._id,
             text
         );
+        setText('');
     }
 
     return(
